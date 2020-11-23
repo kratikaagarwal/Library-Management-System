@@ -1,0 +1,102 @@
+/*made a duplicate copy of style file to hide print button in print view*/
+.success,.danger{
+  background: #b3ff99;
+  font-size: 1em;
+  color:green;
+  text-align: center;
+padding: 4px ;
+}
+.danger{
+	background:red;
+	color:white;
+}
+.myform{
+	width:300px;
+	position:absolute;
+	top:15%;
+	left:35%;
+	border:1px dashed white;
+	padding:40px;
+}
+.myform h1{text-align:center;
+	letter-spacing:0.1em;
+	color:white;
+	margin:30px;
+}
+.myform input[type="text"],input[type="password"],input[tpye="submit"]{color:white;
+    font: normal 20px arial,helvetica,sans-serif;
+	outline:none;
+	border:none;
+	border-bottom:.2em solid white;
+	padding:3%;
+	background:none;
+}
+a
+{
+	text-decoration:none;
+}
+.button{
+
+	color:white;
+	border:none;
+	background:none;
+	border-bottom:.2em solid white;
+	padding:10px 15px;
+	border-radius:12px;
+	margin:20px;
+	margin-left:98px;
+}
+.button:hover{
+cursor: pointer;
+}
+::placeholder{
+
+color:white;}
+#header{
+	display: flex;
+	color:#7d3e34;
+	text-align: right;
+	justify-content: flex-end;/*to align items on main-horizotal axis*/
+	padding:1% 4% 0 2%;
+	width: 100%;}
+#nav
+{
+	margin-left: auto;
+}	
+#nav li{display: inline;
+		margin-left: 20px;
+		list-style: none;}
+
+#nav a:hover{
+	font-weight: bold;
+	margin-bottom: 12px;
+	border-bottom: 1px solid #7d3e34;
+}
+
+table{border-collapse: collapse;}/*To collapse all borders into one border*/
+		table,th,td{
+			border:1px dotted white;
+			padding: 10px;
+
+		}
+		td,th{
+			text-align: center;
+		}
+		
+		.block a{font-weight: 1em;
+			font-size: 22px;
+			color:#914604;
+			background:#fae6d4;
+			padding:5px;
+			border-radius: 0.2em;
+		}
+		.block a:hover{
+			font-weight: bold;
+		}
+#print-btn/*To hide print button in pdf view*/
+		 { display: none; } 
+		#footer{color:#7d3e34;
+			text-align: center;
+ 			margin-top: 2%;
+ 			font-weight: bold;
+		}
