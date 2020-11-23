@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Book</title>
+	<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+	<link rel="icon" type="image/png" href="static/images/logo2.png">
+	<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='css/style.css') }}">
+	<style type="text/css">
+		body,html{
+						margin: 0;
+		}
+		#header{
+			box-sizing: border-box;
+		}
+
+		body{
+			background: url(static/images/bg1.jpg);
+		background-position: center;
+			background-size: cover;
+			height: auto;
+			background-repeat: no-repeat;
+font: normal 20px arial,helvetica,sans-serif;
+
+color: white;
+
+		}
+		.myform{
+			top:12%;
+			padding:10px 50px;
+			
+		}
+		
+		#header h3,a{color: white;}
+		#header a:hover{
+			border-color:white;}
+			::placeholder{
+		
+color:white;}
+.button:hover{
+color:#7d3e34;
+cursor: pointer;
+background:white;
+}
+textarea{
+font-size:20px;
+color:#7d3e34;
+
+margin-top: 10px;}
+.
+}
+	</style>
+
+</head>
+<body>
+	<div class="flash-alert">
+	{% with messages=get_flashed_messages(with_categories=true)  %}
+		{% if messages %}
+		  {% for category,message in messages %}
+		  <div class="{{ category }}">
+		  	{{ message }} 
+		  </div>
+		  {% endfor %}
+		  {% endif %}
+{% endwith %}
+</div>	
+<header id="header">
+		
+		<img src="static/images/logo2.png" width="5%" height="5%">
+		<h3>Library Management System</h3>
+
+	<nav id="nav">
+			<ul>
+				<li> <a href="{{url_for('dashboard')}}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+				<li style="text-align: center;"><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i>  Logout</a></li>
+				
+			</ul>
+		</nav>
+	</header>		
+<form method="post" action="" class="myform">
+	<h1>Update Details</h1>
+	BookID:<input type="text" value="{{data['book_id']}}" readonly="true"><br>
+	Book Name:<input type="text" placeholder="{{data['book_name']}}"  value="{{data['book_name']}}" name="bookname"><br>
+	Author Name:<input type="text" placeholder="{{data['author_name']}}" value="{{data['author_name']}}" name="authorname"><br>
+	
+	<input type="submit" name="Update Book Details" class="button">
+</form>
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

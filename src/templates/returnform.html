@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+	<link rel="icon" type="image/png" href="static/images/logo2.png">
+	<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='css/style.css') }}">
+	<style type="text/css">
+				#header{box-sizing: border-box;}
+				#header h3,a{
+			color: white;
+		}
+		#main-content{
+			position: absolute;
+			left:10%;
+			padding:0% 10%;
+		}
+		#main-content h2{
+			text-align: center;
+		}
+body{
+			background: url(static/images/bg1.jpg);
+		background-position: center;
+			background-size: cover;
+			height: auto;
+			background-repeat: no-repeat;
+font: normal 20px arial,helvetica,sans-serif;
+
+color: white;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="flash-alert">
+	{% with messages=get_flashed_messages(with_categories=true)  %}
+		{% if messages %}
+		  {% for category,message in messages %}
+		  <div class="{{ category }}">
+		  	{{ message }} 
+		  </div>
+		  {% endfor %}
+		  {% endif %}
+{% endwith %}
+</div>	
+	<header id="header">
+		
+		<img src="static/images/logo2.png" width="5%" height="5%">
+		<h3>Library Management System</h3>
+<nav id="nav">
+			<ul>
+				<li> <a href="{{url_for('dashboard')}}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+				<li style="text-align: center;"><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i>  Logout</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+	<div id="main-content">	
+
+<h2>Confirm Return</h2>
+<table>
+	<thead>
+		<th>Book Id</th>
+		<th>Book Name</th>
+		<th>Author Name</th>
+		<th>Issued To</th>
+		<th>Issue Date</th>
+		<th>Return Date</th>
+		<th>Fine</th>
+		
+		
+	</thead>
+
+	<tr>
+		
+	<td>{{data["book_id"]}}</td>
+	<td>{{data["book_name"]}}</td>
+	<td>{{data["author_name"]}}</td>
+
+	<td>{{data["issued_to"]}}</td>
+	<td>{{data["issue_date"]}}</td>
+	<td>{{data["return_date"]}}</td>
+	<td>₹ {{fine}}</td>
+	{% if fine>0 %}
+	<td class="block"><a href="{{url_for('pay_fine',bookid=data['book_id'],fine=fine)}}">Pay Fine</a></td>
+	{%else:%}
+	<td class="block"><a href="{{url_for('return_without_fine',bookid=data['book_id'])}}">Return</a></td>
+		{% endif %}
+	
+</tr>
+	
+</table>
+</div>
+</body>
+</html>

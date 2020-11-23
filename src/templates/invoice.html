@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Invoice</title>
+
+	<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+	<link rel="icon" type="image/pmg" href="static/images/logo2.png">
+	<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='css/sty.css') }}" media="print">
+	<style type="text/css">
+		html,body{
+			margin:0 7%;
+			height: 100%;
+			
+		}
+		body{border:1px black solid;
+			padding: 5px;
+			margin: 15px;
+			height:80%;
+		}
+		#heading{background: black;
+			color: white;
+			width: 100%;
+			text-align: center;
+			padding: 2px;
+			letter-spacing: 2px;
+
+		}
+		#header{
+			justify-content:center;
+		}
+			#main-content{
+				margin: auto;
+		}
+		#below_header{
+			display: inline;
+		}
+			table,th,td{
+			border:1px dotted black;
+		
+
+		}
+	</style>
+</head>
+<body>
+	
+		<button id="print-btn" onclick="window.print()" id="home_login">Print</button>
+		<header id="header">
+		
+		<img src="static/images/logo2.png" width="5%" height="5%">
+		<h3>Library Management System</h3>
+		
+
+</header>
+<div style="text-align: center;font-weight: bold;">INVOICE</div>
+<div id="below_header">
+<div style="float: left;">Receipt Date:{{cost["date_today"]|datetime}}</div>
+<div style="float: right;">Receipt No:</div>
+</div>
+<br>
+<hr><table id="main-content">
+
+		<thead>
+		<th>Book Id</th>
+		<th>Book Name</th>
+		<th>Author Name</th>
+		<th>Issued To</th>
+		<th>Issue Date</th>
+		<th>Return Date</th>
+		
+		
+		
+	</thead>
+
+	<tr>
+		
+	<td>{{data["book_id"]}}</td>
+	<td>{{data["book_name"]}}</td>
+	<td>{{data["author_name"]}}</td>
+
+	<td>{{data["issued_to"]}}</td>
+	<td>{{data["issue_date"] |datetime}}</td>
+	<td>{{data["return_date"]  |datetime}}</td>
+	
+	</tr>
+	
+	<tr >
+		<th colspan="5">Total Fine</th>
+		<td>₹ {{cost["fine"]}}</td>
+	</tr>
+	<tr>
+		<th colspan="5">Amount Paid</th>
+		<td>₹ {{cost["amt_paid"]}}</td>
+	</tr>
+	<tr>
+		<th colspan="5">Change</th>
+		<td>₹ {{cost["change_due"]}}</td>
+	</tr>
+	</table>
+
+</body>
+</html>

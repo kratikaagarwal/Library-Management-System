@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Payment</title>
+	<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+	<link rel="icon" type="image/pmg" href="static/images/logo2.png">
+	<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='css/style.css') }}">
+	<style type="text/css">
+	#header{
+			box-sizing: border-box;
+		}		
+body{
+			background: url(static/images/bg3.jpg);
+		
+			background-size: cover;
+			height: auto;
+			background-repeat: no-repeat;
+font: normal 20px arial,helvetica,sans-serif;
+
+color: white;
+
+		}
+		#header h3,a{
+			color: white;
+		}
+
+		.button:hover{
+			font-weight: bolder;
+		}
+	</style>
+</head>
+<body>
+<div class="flash-alert">
+	{% with messages=get_flashed_messages(with_categories=true)  %}
+		{% if messages %}
+		  {% for category,message in messages %}
+		  <div class="{{ category }}">
+		  	{{ message }} 
+		  </div>
+		  {% endfor %}
+		  {% endif %}
+{% endwith %}
+</div>	<script type="text/javascript">
+		function calc_change(){
+			var x=document.getElementById("to_pay").value;
+			var y=document.getElementById("paid").value;
+			var change=parseInt(y)-parseInt(x);
+			document.getElementById("change").innerHTML="Change: ₹"+change;
+			document.getElementById("change_due").value=change;
+		}
+
+
+	</script>
+<header id="header">
+		
+		<img src="static/images/logo2.png" width="5%" height="5%">
+		<h3>Library Management System</h3>
+
+	<nav id="nav">
+			<ul>
+				<li> <a href="{{url_for('dashboard')}}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+				<li style="text-align: center;"><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i>  Logout</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+<form method="post" class="myform">
+	<h1>Payment</h1>
+	Amount Payable:₹ <input type="text" id="to_pay"  value="{{fine}}" readonly="true">
+	Payment Received:₹<input type="text" id="paid" name="paid" oninput="calc_change()"  >
+	<div id="change"></div>
+	<input type="hidden" id="change_due" name="change_due">
+	<input type="submit" name="" value="pay" class="button">
+</form>
+</body>
+</html>

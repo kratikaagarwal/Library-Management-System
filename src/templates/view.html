@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Books</title>
+	<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+	<link rel="icon" type="image/png" href="static/images/logo2.png">
+	<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='css/style.css') }}">
+	<style type="text/css">
+				#header{box-sizing: border-box;}
+				#header h3,a{
+			color: white;
+		}
+		#main-content{
+			position: absolute;
+			left:10%;
+			padding:0% 10%;
+		}
+		#main-content h2{
+			text-align: center;
+		}
+body{
+			background: url(static/images/bg1.jpg);
+		background-position: center;
+			background-size: cover;
+			height: auto;
+			background-repeat: no-repeat;
+font: normal 20px arial,helvetica,sans-serif;
+
+color: white;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="flash-alert">
+	{% with messages=get_flashed_messages(with_categories=true)  %}
+		{% if messages %}
+		  {% for category,message in messages %}
+		  <div class="{{ category }}">
+		  	{{ message }} 
+		  </div>
+		  {% endfor %}
+		  {% endif %}
+{% endwith %}
+</div>	
+	<header id="header">
+		
+		<img src="static/images/logo2.png" width="5%" height="5%">
+		<h3>Library Management System</h3>
+<nav id="nav">
+			<ul>
+				<li> <a href="{{url_for('dashboard')}}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+				<li style="text-align: center;"><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i>  Logout</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+	<div id="main-content">	
+<h2>Books Available To Issue:</h2>
+<table>
+	<thead>
+		<th>Book Id</th>
+		<th>Book Name</th>
+		<th>Author Name</th>
+		<th>Issued To</th>
+		<th>Availability</th>
+		<th>Issue Date</th>
+		<th>Return Date</th>
+		<th>Update/Delete Book</th>
+		<th>Issue/Return Book</th>
+	</thead>
+	{% for i in data: %}
+	<tr>
+		
+	<td>{{i["book_id"]}}</td>
+	<td>{{i["book_name"]}}</td>
+	<td>{{i["author_name"]}}</td>
+	<td>{{i["issued_to"]}}</td>
+	<td>{{i["availability"]}}</td>
+	<td>{{i["issue_date"]}}</td>
+	<td>{{i["return_date"]}}</td>
+	{% if i["availability"]=='available'%}
+
+	<td class="block"><a href="{{url_for('update_book',bookid=i['book_id'])}}">Update</a>|<a href="{{url_for('delete_book',bookid=i['book_id'])}}">Delete</a></td>
+
+{%else %}
+	<td class="block"><a href="{{url_for('update_book',bookid=i['book_id'])}}">Update</a></td>
+
+{% endif %}
+{% if i["availability"]=='available'%}
+
+	<td class="block"><a href="{{url_for('issue_books',bookid=i['book_id'])}}">Issue</a></td>
+
+{%elif i["availability"]=='issued' %}
+	<td class="block"><a href="{{url_for('return_books',bookid=i['book_id'])}}">Return</a></td>
+	
+{% endif %}
+
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

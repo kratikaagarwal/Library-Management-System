@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SignUp</title>
+<link rel="icon" type="image/pmg" href="static/images/logo2.png">
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+body
+{ background:#c4ba2b;
+
+background-size:cover;
+
+background-repeat:repeat;
+color:white;
+font: normal 20px arial,helvetica,sans-serif;
+line-height:2em;
+margin-bottom:20px;
+}
+.button:hover{
+color:#575103;
+background:#dbd57f;
+}
+</style>
+</head>
+<body>
+		<div class="flash-alert">
+	{% with messages=get_flashed_messages(with_categories=true)  %}
+		{% if messages %}
+		  {% for category,message in messages %}
+		  <div class="{{ category }}">
+		  	{{ message }} 
+		  </div>
+		  {% endfor %}
+		  {% endif %}
+{% endwith %}
+</div>
+<form action="{{ url_for('register') }}" method="post" class="myform" >
+<h1>SIGN UP</h1>
+
+
+<i class="fas fa-user"></i><input type="text"  placeholder="Username" name="username"><br>
+
+<i class="fas fa-lock"></i><input type="password"  placeholder="Password" name="password"><br>
+
+<input class ="button" type="submit" value="Sign Up"><br>
+
+                  Already Registered? <a href="{{ url_for('login') }}">Login...</a>
+				
+                   
+                 
+</form>
+</body>
+</html>

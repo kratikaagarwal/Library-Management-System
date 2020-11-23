@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome</title>
+	<link rel="icon" type="image/png" href="static/images/logo2.png">
+	<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+	<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='css/style.css') }}">
+	<style type="text/css">
+		*{
+			box-sizing: border-box;
+		}
+
+		body{
+			background: url(static/images/bg5.jpg);
+			color: white;
+			background-size: cover;
+
+			height: auto;
+			background-repeat: no-repeat;
+
+		}
+	
+		#header,#footer{
+			color:white;
+		}
+		.section1{
+			font-size: 20px;
+			text-align: center;
+		}
+		#main-content{
+			display: flex;
+			justify-content: flex-end;
+		
+			padding:1%;
+			}
+
+		.block{
+		
+			border:2px dotted white;
+			flex-basis:50%;
+			padding: 5%;
+			margin-right: 15px;
+		}
+		a{
+			color:white;
+			font-size: 20px;
+		}
+		a:hover{
+			border:white;
+		}
+		.block a{font-weight: 1em;
+			font-size: 22px;
+			color:#914604;
+			background:#fae6d4;
+			padding:5px;
+			border-radius: 0.2em;
+		}
+		.block a:hover{
+			font-weight: bold;
+		}
+		.block:hover {
+		 transform: scaleY(1.1);
+		}
+		.block p{
+			font-size:20px;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="flash-alert">
+	{% with messages=get_flashed_messages(with_categories=true)  %}
+		{% if messages %}
+		  {% for category,message in messages %}
+		  <div class="{{ category }}">
+		  	{{ message }} 
+		  </div>
+		  {% endfor %}
+		  {% endif %}
+{% endwith %}
+</div>	
+<header id="header">
+		
+		<img src="static/images/logo2.png" width="5%" height="5%">
+		<h1>Library Management System</h1>
+
+	<nav id="nav">
+			<ul>
+				<li> <a href="{{url_for('dashboard')}}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+				<li style="text-align: center;"><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i>  Logout</a></li>
+				
+			</ul>
+		</nav>
+	</header>		
+
+	<section class="section1">
+<h1>Welcome, {{session['username'] | capitalize}} </h1>
+	<p>You can now manage the library books</p>
+	</section>
+<div id="main-content">
+	
+	<div class="block">
+		<p>Choose books to issue from the list of available books.</p><br>
+		<a href="{{ url_for('issue_book')}}">Issue Books</a>
+		
+	</div>
+	<div class="block">
+		<p>Add New Books to the library database.</p><br>
+		<a href="{{ url_for('add_book')}}">Add Books</a>
+	</div>
+	<div class="block">
+		<p>Choose a book to return from the list of issued books.</p><br>
+		<a href="{{ url_for('return_book')}}">Return Book</a>
+	</div>
+		
+<div class="block">
+		<p>View List of all the books in the library database.</p><br>
+		<a href="{{ url_for('view_book')}}">View Books</a>
+	</div>
+</div>
+
+<footer id="footer">
+	&copy; 2020 Library Management System
+</footer>
+</body>
+</html>
