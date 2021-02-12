@@ -17,5 +17,7 @@ Database used- MySQL.
 ## Screenshots
 
 ![Screenshot](https://github.com/kratikaagarwal/Library-Management-System/blob/main/src/static/screenshot/pic1.jpg)
-
+![Screenshot](https://github.com/kratikaagarwal/Library-Management-System/blob/main/src/static/screenshot/pic2.jpg)
+![Screenshot](https://github.com/kratikaagarwal/Library-Management-System/blob/main/src/static/screenshot/pic3.jpg)
+![Screenshot](https://github.com/kratikaagarwal/Library-Management-System/blob/main/src/static/screenshot/pic4.jpg)
 
